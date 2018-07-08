@@ -8,11 +8,13 @@
 
 import UIKit
 
-class SampleTableViewController: UITableViewController {
+class SampleTableViewController: UIViewController {
+
+    private var contentViewModel = ContetViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.setUpUITableView()
      
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -21,22 +23,38 @@ class SampleTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
+    private func setUpUITableView()
+    {
+        let sampleTableView: UITableView = UITableView()
+        sampleTableView.frame = CGRect(x: 10, y: 10, width: UIScreen.main.bounds.width-20, height: UIScreen.main.bounds.height-20)
+        sampleTableView.dataSource = contentViewModel
+        sampleTableView.delegate = contentViewModel
+        sampleTableView.register(SampleTableViewCell.self, forCellReuseIdentifier: "SampleTableViewCell")
+        sampleTableView.estimatedRowHeight = 100
+        sampleTableView.rowHeight = UITableViewAutomaticDimension
+        sampleTableView.sectionHeaderHeight = 70
+        sampleTableView.separatorStyle = .none
+        self.view.addSubview(sampleTableView)
+
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
+//    // MARK: - Table view data source
+//
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 0
+//    }
+//
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        // #warning Incomplete implementation, return the number of rows
+//        return 0
+//    }
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
