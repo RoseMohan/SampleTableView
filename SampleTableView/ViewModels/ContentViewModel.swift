@@ -16,6 +16,7 @@ struct TableViewCellData {
 }
 class ContetViewModel: NSObject
 {
+    public var isDataAvailable = false
     var contentList =  [TableViewCellData]()
     var contentHeading = ""
     override init() {
@@ -29,6 +30,10 @@ class ContetViewModel: NSObject
                 self.contentList.append(tableViewData)
             }
             self.contentHeading = contents.title!
+        }
+        if (self.contentList.count > 0)
+        {
+            isDataAvailable = true
         }
     }
 }

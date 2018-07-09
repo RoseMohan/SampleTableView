@@ -24,6 +24,7 @@ class WebService {
         }
         catch let error {
             // Error handling
+            print(error.localizedDescription)
         }
 
     }
