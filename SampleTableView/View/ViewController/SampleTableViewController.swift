@@ -11,7 +11,15 @@ import UIKit
 class SampleTableViewController: UIViewController {
 
     private var contentViewModel = ContetViewModel()
+    let sampleTableView: UITableView = UITableView()
 
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh(_:)), for: .valueChanged)
+        refreshControl.tintColor = UIColor.black
+        return refreshControl
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUPLoadingIndicator()
@@ -31,7 +39,6 @@ class SampleTableViewController: UIViewController {
     }
     private func setUpUITableView()
     {
-        let sampleTableView: UITableView = UITableView()
         sampleTableView.backgroundColor = UIColor.clear
         sampleTableView.frame = CGRect(x: 10, y: 10, width: UIScreen.main.bounds.width-20, height: UIScreen.main.bounds.height-20)
         sampleTableView.dataSource = contentViewModel
@@ -41,8 +48,17 @@ class SampleTableViewController: UIViewController {
         sampleTableView.rowHeight = UITableViewAutomaticDimension
         sampleTableView.sectionHeaderHeight = 70
         sampleTableView.separatorStyle = .none
+        sampleTableView.refreshControl = refreshControl
         self.view.addSubview(sampleTableView)
         
+    }
+    // MARK :- Handles refresh
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        contentViewModel = ContetViewModel()
+        sampleTableView.dataSource = contentViewModel
+        sampleTableView.delegate = contentViewModel
+        sampleTableView.reloadData()
+        refreshControl.endRefreshing()
     }
     
     override func didReceiveMemoryWarning() {
