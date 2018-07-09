@@ -41,7 +41,6 @@ extension ContetViewModel: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.contentList.count
-      
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -51,17 +50,38 @@ extension ContetViewModel: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = SampleTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "SampleTableViewCell")
-        cell.backgroundColor = UIColor.yellow
         let item = self.contentList[indexPath.row]
-//        guard let item = self.contentList[indexPath.row] as? TableViewCellData else {
-//            return UITableViewCell()
-//        }
-      
         cell.titleLabel.text = item.title as? String
+        if let imgURLString = (item.imageHref as? String)
+        {
+            if let imgURL = NSURL(string: imgURLString)
+            {
+                let request:NSURLRequest =  NSURLRequest(url: imgURL as URL)
+                let config = URLSessionConfiguration.default
+                let session = URLSession(configuration: config)
+                let task = session.dataTask(with: request as URLRequest,    completionHandler: {(data, response, error) in
+                    if error == nil {
+                        DispatchQueue.main.async(execute: { () -> Void in
+                            cell.sampleImageView.image = UIImage(data: data!)
+                        })
+                    }
+                    else {
+                        DispatchQueue.main.async(execute: { () -> Void in
+                            cell.sampleImageView.isHidden = true
+                        })
+                    }
+                });
+                task.resume()
+            }
+            else{
+                cell.sampleImageView.isHidden = true
+            }
+        }
+        else{
+             cell.sampleImageView.isHidden = true
+        }
         cell.descriptionLabel.text = item.description as? String
-        print("item.title  ", item.description ?? String.self)
         return cell
-    
     }
     
 }
@@ -70,11 +90,9 @@ extension ContetViewModel: UITableViewDataSource {
 
 extension ContetViewModel: UITableViewDelegate {
     
-    
-    
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//
-//    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.contentHeading
+    }
     
 }
 

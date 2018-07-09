@@ -11,13 +11,22 @@ import XCTest
 
 class SampleTableViewTests: XCTestCase {
     
+    var viewModel : ContetViewModel!
+    var dataSource : Content!
+    fileprivate var service : WebService!
+    
+    
     override func setUp() {
         super.setUp()
+        self.viewModel = ContetViewModel()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        self.viewModel = nil
+        self.dataSource = nil
+        self.service = nil
         super.tearDown()
     }
     

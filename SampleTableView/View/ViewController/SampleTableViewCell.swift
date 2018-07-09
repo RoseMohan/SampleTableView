@@ -10,9 +10,9 @@ import UIKit
 
 class SampleTableViewCell: UITableViewCell {
 
-    var titleLabel: UILabel!
-    var descriptionLabel: UILabel!
-    var sampleImageView : UIImageView!
+    var titleLabel = UILabel()
+    var descriptionLabel = UILabel()
+    var sampleImageView = UIImageView()
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:)")
@@ -22,40 +22,43 @@ class SampleTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        self.selectionStyle = .none
         let marginGuide = contentView.layoutMarginsGuide
-        
-        
+
         // configure titleLabel
-        titleLabel = UILabel()
         contentView.addSubview(titleLabel)
-        titleLabel.textColor = UIColor.black
-        titleLabel.backgroundColor = UIColor.red
+        titleLabel.textColor = UIColor.white
+        titleLabel.backgroundColor = UIColor.darkGray
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.leadingAnchor.constraint(equalTo: marginGuide.leadingAnchor).isActive = true
         titleLabel.topAnchor.constraint(equalTo: marginGuide.topAnchor).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true
         titleLabel.numberOfLines = 0
+        titleLabel.font = UIFont (name: "HelveticaNeue-Bold", size: 16)
 
-        // configure descriptionLabel
-        descriptionLabel = UILabel()
-        contentView.addSubview(descriptionLabel)
-        descriptionLabel.backgroundColor = UIColor.gray
-        descriptionLabel.textColor = UIColor.black
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.leadingAnchor.constraint(equalTo: marginGuide.leadingAnchor).isActive = true
-        descriptionLabel.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor).isActive = true
-        descriptionLabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true
-        descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
-        descriptionLabel.numberOfLines = 0
-        descriptionLabel.font = UIFont(name: "Avenir-Book", size: 12)
-        descriptionLabel.textColor = UIColor.lightGray
 
-        
-        sampleImageView = UIImageView()
-//        sampleImageView.frame = CGRect(x: bounds.width-imageSize - gap, y: gap, width: imageSize, height: imageSize)
+        // configure stackview
+        sampleImageView.contentMode = .scaleAspectFit
         sampleImageView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(sampleImageView)
-       
+
+        descriptionLabel.numberOfLines = 0
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        let stackView =  UIStackView()
+        contentView.addSubview(stackView)
+        stackView.backgroundColor = UIColor.cyan
+        stackView.axis = .horizontal
+        stackView.distribution = .fill
+        stackView.alignment = .fill
+        stackView.spacing = 5
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.addArrangedSubview(sampleImageView)
+        stackView.addArrangedSubview(descriptionLabel)
+        stackView.leadingAnchor.constraint(equalTo: marginGuide.leadingAnchor).isActive = true
+        stackView.topAnchor.constraint(equalTo:titleLabel.bottomAnchor).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor).isActive = true
+      
     }
 
 }
