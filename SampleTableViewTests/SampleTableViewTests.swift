@@ -29,6 +29,28 @@ class SampleTableViewTests: XCTestCase {
         self.service = nil
         super.tearDown()
     }
+   
+    // Asynchronous test: success fast, failure slow
+    func testValidCallToiTunesGetsHTTPStatusCode200() {
+        let url =  URL(string: "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json")!
+        
+        do {
+            let datastring = try String.init(contentsOf: url, encoding: String.Encoding.isoLatin1)
+            let data =  datastring.data(using: .utf8)
+            let deserializedValues = try JSONSerialization.jsonObject(with: data!)
+            if (!(deserializedValues is JSONDictionary))
+            {
+                XCTAssert(false, "Wrong JSON")
+            }
+            let detailDictionary = deserializedValues as! JSONDictionary
+            dataSource = Content(dictionary: detailDictionary)!
+        }
+        catch{
+            XCTFail("Wrong JSON")
+        }
+       
+    }
+    
     
     func testExample() {
         // This is an example of a functional test case.
