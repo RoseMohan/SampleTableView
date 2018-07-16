@@ -7,10 +7,12 @@
 //
 
 import Foundation
+import UIKit
 typealias JSONDictionary = [String:Any]
 
 class WebService {
-     let sourceURL = URL(string: "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json")!
+    let sourceURL = URL(string: Data.KURLSTRING)!
+    
     func getContents(callback :@escaping (Content) -> ()) {
         
         var details:Content
@@ -27,6 +29,20 @@ class WebService {
             print(error.localizedDescription)
         }
 
+    }
+
+    func imageData(imageReferenceURL: URL,taskCallback: @escaping (UIImage?) -> ()) {
+        print(imageReferenceURL)
+        let request:NSURLRequest =  NSURLRequest(url: imageReferenceURL)
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        let task = session.dataTask(with: request as URLRequest,    completionHandler: {(data, response, error) -> Void  in
+            if let responseData = data {
+                    taskCallback(UIImage(data: responseData))
+            }
+        });
+        task.resume()
+        return;
     }
     
 }

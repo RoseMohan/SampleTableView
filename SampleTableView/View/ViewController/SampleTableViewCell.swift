@@ -23,6 +23,11 @@ class SampleTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.selectionStyle = .none
+        setUpTableViewCell()
+    }
+
+    func setUpTableViewCell() {
+
         let marginGuide = contentView.layoutMarginsGuide
 
         // configure titleLabel
@@ -34,16 +39,18 @@ class SampleTableViewCell: UITableViewCell {
         titleLabel.topAnchor.constraint(equalTo: marginGuide.topAnchor).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true
         titleLabel.numberOfLines = 0
-        titleLabel.font = UIFont (name: "HelveticaNeue-Bold", size: 16)
+        titleLabel.font = UIFont (name: Font.KNAME, size: 16)
 
 
-        // configure stackview
+        // configure imageView
         sampleImageView.contentMode = .scaleAspectFit
         sampleImageView.translatesAutoresizingMaskIntoConstraints = false
 
+        // configure descriptionLabel
         descriptionLabel.numberOfLines = 0
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
 
+        // configure stackview with imageView and description
         let stackView =  UIStackView()
         contentView.addSubview(stackView)
         stackView.backgroundColor = UIColor.cyan
@@ -58,7 +65,5 @@ class SampleTableViewCell: UITableViewCell {
         stackView.topAnchor.constraint(equalTo:titleLabel.bottomAnchor).isActive = true
         stackView.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true
         stackView.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor).isActive = true
-      
     }
-
 }
