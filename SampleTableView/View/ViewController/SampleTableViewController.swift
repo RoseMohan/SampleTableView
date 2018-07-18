@@ -62,7 +62,12 @@ class SampleTableViewController: UIViewController, UITableViewDataSource, UITabl
         sampleTableView.rowHeight = UITableViewAutomaticDimension
         sampleTableView.sectionHeaderHeight = 70
         sampleTableView.separatorStyle = .none
-        sampleTableView.refreshControl = refreshControl
+        if #available(iOS 10.0, *) {
+            sampleTableView.refreshControl = refreshControl
+        } else {
+            // Fallback on earlier versions
+            sampleTableView.addSubview(refreshControl)
+        }
         activityIndicator.stopAnimating()
     }
     // MARK :- Handles Data Error
@@ -100,8 +105,7 @@ class SampleTableViewController: UIViewController, UITableViewDataSource, UITabl
         let cell = SampleTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "SampleTableViewCell")
         let item = contentViewModel.contentList[indexPath.row]
         cell.titleLabel.text = item.title
-        if (item.imageHref != nil)
-        {
+        if (item.imageHref != nil) {
             contentViewModel.imageDatafromUrl(imageUrl: item.imageHref, fromIndexPath: indexPath.row) { imageData in
                 if (imageData != nil) {
                     DispatchQueue.main.async(execute: { () -> Void in
