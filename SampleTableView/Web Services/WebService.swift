@@ -32,7 +32,6 @@ class WebService {
     }
 
     func imageData(imageReferenceURL: URL,taskCallback: @escaping (UIImage?) -> ()) {
-        print(imageReferenceURL)
         let request:NSURLRequest =  NSURLRequest(url: imageReferenceURL)
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
