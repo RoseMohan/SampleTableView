@@ -31,8 +31,7 @@ class ContetViewModel: NSObject {
                     tableViewData.title = title
                 }
                 if let imageReference = row.imageHref as? String {
-                    if let imgURL = URL(string: imageReference)
-                    {
+                    if let imgURL = URL(string: imageReference) {
                         tableViewData.imageHref = imgURL
                     }
                 }
