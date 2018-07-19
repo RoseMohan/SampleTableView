@@ -11,7 +11,7 @@ import UIKit
 typealias JSONDictionary = [String:Any]
 
 class WebService {
-    let sourceURL = URL(string: Data.KURLSTRING)!
+    let sourceURL = URL(string: JsonData.URLSTRING)!
     
     func getContents(callback :@escaping (Content) -> ()) {
         

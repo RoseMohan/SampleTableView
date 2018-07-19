@@ -8,25 +8,26 @@
 import Foundation
 
 struct ResponseDataKeys {
-    static let kROWS = "rows"
-    static let kTITLE = "title"
-    static let kDESCRIPTION = "description"
-    static let kIMAGEREF = "imageHref"
+    static let ROWS = "rows"
+    static let TITLE = "title"
+    static let DESCRIPTION = "description"
+    static let IMAGEREF = "imageHref"
 }
 
 struct AlertData {
-    static let KALERTTITLE = "Alert!"
-    static let KALERTMESSAGE = "No Data"
-    static let KALERTOKMESSAGE = "Ok"
+    static let ALERTTITLE = "Alert!"
+    static let ALERTMESSAGE = "No Data"
+    static let ALERTOKMESSAGE = "Ok"
 }
 
-struct Data {
-    static let KURLSTRING = "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json"
+struct JsonData {
+    static let URLSTRING = "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json"
 }
 
 struct Font {
     static let KNAME = "HelveticaNeue-Bold"
 }
+
 
 
 

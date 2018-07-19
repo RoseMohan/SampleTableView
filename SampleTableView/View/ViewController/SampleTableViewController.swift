@@ -73,10 +73,10 @@ class SampleTableViewController: UIViewController, UITableViewDataSource, UITabl
     // MARK :- Handles Data Error
     private func ShowError() {
         activityIndicator.stopAnimating()
-        let alert = UIAlertController(title: AlertData.KALERTTITLE ,
-                                      message: AlertData.KALERTMESSAGE,
+        let alert = UIAlertController(title: AlertData.ALERTTITLE ,
+                                      message: AlertData.ALERTMESSAGE,
                                       preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: AlertData.KALERTOKMESSAGE,
+        alert.addAction(UIAlertAction(title: AlertData.ALERTOKMESSAGE,
                                       style: UIAlertActionStyle.default))
         
         UIApplication.shared.delegate?.window??.rootViewController?.present(alert, animated: true, completion: nil)

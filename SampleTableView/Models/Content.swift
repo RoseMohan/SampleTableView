@@ -17,11 +17,11 @@ class Content: NSObject {
     var title:String?
     var rows:[Row] = [Row]()
     init?(dictionary :JSONDictionary) {
-        if let title = dictionary[ResponseDataKeys.kTITLE] as? String {
+        if let title = dictionary[ResponseDataKeys.TITLE] as? String {
             self.title = title;
         }
-        for row in dictionary[ResponseDataKeys.kROWS] as! [AnyObject] {
-           rows.append(Row(title: row[ResponseDataKeys.kTITLE]!, description: row[ResponseDataKeys.kDESCRIPTION]!, imageHref: row[ResponseDataKeys.kIMAGEREF]!))
+        for row in dictionary[ResponseDataKeys.ROWS] as! [AnyObject] {
+           rows.append(Row(title: row[ResponseDataKeys.TITLE]!, description: row[ResponseDataKeys.DESCRIPTION]!, imageHref: row[ResponseDataKeys.IMAGEREF]!))
         }
     }
 }

@@ -38,12 +38,12 @@ class SampleTableViewTests: XCTestCase {
             let datastring = try String.init(contentsOf: url, encoding: String.Encoding.isoLatin1)
             let data =  datastring.data(using: .utf8)
             let deserializedValues = try JSONSerialization.jsonObject(with: data!)
-            if (!(deserializedValues is JSONDictionary))
-            {
+            if (!(deserializedValues is JSONDictionary)) {
                 XCTAssert(false, "Wrong JSON")
             }
             let detailDictionary = deserializedValues as! JSONDictionary
             dataSource = Content(dictionary: detailDictionary)!
+
         }
         catch{
             XCTFail("Wrong JSON")
@@ -51,7 +51,31 @@ class SampleTableViewTests: XCTestCase {
        
     }
     
-    
+    func testValidDataForImage() {
+        for data in dataSource.rows {
+            if data == nil {
+                XCTFail("No Data")
+            } else {
+                if let url =  URL(string: data.imageHref as! String) {
+                    let request:NSURLRequest =  NSURLRequest(url: url)
+                    let config = URLSessionConfiguration.default
+                    let session = URLSession(configuration: config)
+                    let task = session.dataTask(with: request as URLRequest,    completionHandler: {(data, response, error) -> Void  in
+                        if let responseData = data {
+                            XCTAssert(true)
+                        }
+                        if error != nil {
+                            XCTFail("Wrong Image Data")
+                        }
+                    });
+                    task.resume()
+                } else {
+                    XCTFail("Wrong Image Data")
+                }
+            }
+        }
+    }
+
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
