@@ -10,6 +10,8 @@
 		9AC60DB420F2539F00D055EF /* SampleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC60DB320F2539F00D055EF /* SampleTableViewCell.swift */; };
 		9AE3B6D92100E52C008065E2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE3B6D82100E52C008065E2 /* Constants.swift */; };
 		9AE3B6DA2100E52C008065E2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE3B6D82100E52C008065E2 /* Constants.swift */; };
+		9AE3B6DC2100E6CE008065E2 /* UIViewController+SampleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE3B6DB2100E6CE008065E2 /* UIViewController+SampleTableViewController.swift */; };
+		9AE3B6DD2100E6CE008065E2 /* UIViewController+SampleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE3B6DB2100E6CE008065E2 /* UIViewController+SampleTableViewController.swift */; };
 		9AF431E120EFC12C00E827AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF431E020EFC12C00E827AD /* AppDelegate.swift */; };
 		9AF431E820EFC12D00E827AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AF431E720EFC12D00E827AD /* Assets.xcassets */; };
 		9AF431F620EFC12D00E827AD /* SampleTableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF431F520EFC12D00E827AD /* SampleTableViewTests.swift */; };
@@ -39,6 +41,7 @@
 /* Begin PBXFileReference section */
 		9AC60DB320F2539F00D055EF /* SampleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleTableViewCell.swift; sourceTree = "<group>"; };
 		9AE3B6D82100E52C008065E2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		9AE3B6DB2100E6CE008065E2 /* UIViewController+SampleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SampleTableViewController.swift"; sourceTree = "<group>"; };
 		9AF431DD20EFC12B00E827AD /* SampleTableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleTableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AF431E020EFC12C00E827AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9AF431E720EFC12D00E827AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -84,6 +87,14 @@
 				9AE3B6D82100E52C008065E2 /* Constants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		9AE3B6DE2100E95D008065E2 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				9AE3B6DB2100E6CE008065E2 /* UIViewController+SampleTableViewController.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		9AF431D420EFC12B00E827AD = {
@@ -172,6 +183,7 @@
 		9AF4321920EFC23500E827AD /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				9AE3B6DE2100E95D008065E2 /* Extension */,
 				9AF4321A20EFC25600E827AD /* SampleTableViewController.swift */,
 				9AC60DB320F2539F00D055EF /* SampleTableViewCell.swift */,
 			);
@@ -308,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AF4321420EFC1F800E827AD /* WebService.swift in Sources */,
+				9AE3B6DC2100E6CE008065E2 /* UIViewController+SampleTableViewController.swift in Sources */,
 				9AC60DB420F2539F00D055EF /* SampleTableViewCell.swift in Sources */,
 				9AF431E120EFC12C00E827AD /* AppDelegate.swift in Sources */,
 				9AF4321620EFC21000E827AD /* Content.swift in Sources */,
@@ -323,6 +336,7 @@
 			files = (
 				9AF431F620EFC12D00E827AD /* SampleTableViewTests.swift in Sources */,
 				9AE3B6DA2100E52C008065E2 /* Constants.swift in Sources */,
+				9AE3B6DD2100E6CE008065E2 /* UIViewController+SampleTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
