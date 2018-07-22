@@ -39,14 +39,17 @@ class SampleTableViewTests: XCTestCase {
             let data =  datastring.data(using: .utf8)
             let deserializedValues = try JSONSerialization.jsonObject(with: data!)
             if (!(deserializedValues is JSONDictionary)) {
-                XCTAssert(false, "Wrong JSON")
+                let dataIsAvailable = false
+                XCTAssertEqual(viewModel.isDataAvailable, dataIsAvailable)
             }
             let detailDictionary = deserializedValues as! JSONDictionary
             dataSource = Content(dictionary: detailDictionary)!
-
+            let dataIsAvailable = true
+            XCTAssertEqual(viewModel.isDataAvailable, dataIsAvailable)
         }
         catch{
-            XCTFail("Wrong JSON")
+            let dataIsAvailable = false
+            XCTAssertEqual(viewModel.isDataAvailable, dataIsAvailable)
         }
        
     }
