@@ -52,25 +52,25 @@ class SampleTableViewTests: XCTestCase {
     }
     
     func testValidDataForImage() {
-        for data in dataSource.rows {
+        for data in self.viewModel.contentList {
             if data == nil {
                 XCTFail("No Data")
             } else {
-                if let url =  URL(string: data.imageHref as! String) {
-                    let request:NSURLRequest =  NSURLRequest(url: url)
+                if let imageUrl = data.imageHref {
+                    let request:NSURLRequest =  NSURLRequest(url: imageUrl)
                     let config = URLSessionConfiguration.default
                     let session = URLSession(configuration: config)
                     let task = session.dataTask(with: request as URLRequest,    completionHandler: {(data, response, error) -> Void  in
-                        if let responseData = data {
+                        if data != nil {
                             XCTAssert(true)
                         }
                         if error != nil {
-                            XCTFail("Wrong Image Data")
+                            XCTAssert(true,"Wrong Image Data")
                         }
                     });
                     task.resume()
                 } else {
-                    XCTFail("Wrong Image Data")
+                    XCTAssert(true,"Wrong Image Data")
                 }
             }
         }
